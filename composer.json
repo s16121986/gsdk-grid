@@ -1,0 +1,32 @@
+{
+  "name": "gsdk/grid",
+  "type": "library",
+  "description": "Allows detect client timezone from cookies",
+  "version": "1.0.0",
+  "keywords": [
+	"gsdk",
+	"meta"
+  ],
+  "license": "MIT",
+  "authors": [
+	{
+	  "name": "Sergey Guryanov",
+	  "email": "s16121986@yandex.ru"
+	}
+  ],
+  "require": {
+	"php": ">=8.0.2",
+	"gsdk/navigation": ">=1.0.0",
+	"gsdk/format": ">=1.0.0"
+  },
+  "require-dev": {
+  },
+  "conflict": {
+  },
+  "autoload": {
+	"psr-4": {
+	  "Gsdk\\Grid\\": ""
+	}
+  },
+  "minimum-stability": "dev"
+}
