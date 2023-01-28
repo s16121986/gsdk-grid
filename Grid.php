@@ -46,7 +46,7 @@ class Grid
 
 	public function getOption(string $name)
 	{
-		return $this->options->get($name);
+		return $this->options->$name;
 	}
 
 	public function getSorting(): Support\Sorting
@@ -105,9 +105,10 @@ class Grid
 
 	protected function prepareData(): void
 	{
-		$this->data
-			->paginator($this->paginator)
-			->sorting($this->sorting);
+		if ($this->paginator)
+			$this->data->paginator($this->paginator);
+
+		$this->data->sorting($this->sorting);
 	}
 
 }
