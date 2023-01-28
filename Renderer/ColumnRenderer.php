@@ -5,14 +5,16 @@ namespace Gsdk\Grid\Renderer;
 use Gsdk\Grid\Column\ColumnInterface;
 use Gsdk\Grid\Grid;
 
-class ColumnRenderer {
+class ColumnRenderer
+{
 	public function __construct(
-		private readonly Grid            $grid,
+		private readonly Grid $grid,
 		private readonly ColumnInterface $column
 	) {
 	}
 
-	public function th(): string {
+	public function th(): string
+	{
 		$sorting = $this->grid->getSorting();
 		$column = $this->column;
 
@@ -26,7 +28,8 @@ class ColumnRenderer {
 				$html .= '<div class="grid-sorted-arrow"></div>';
 
 			$html .= '</div>';
-		} else
+		}
+		else
 			$html .= $column->text;
 
 		$html .= '</th>';
@@ -34,7 +37,8 @@ class ColumnRenderer {
 		return $html;
 	}
 
-	public function td($row): string {
+	public function td($row): string
+	{
 		$html = '<td class="' . $this->class() . '">';
 		//$dataValue = isset($row->{$column->name}) ? $row->{$column->name} : null;
 		$html .= $this->text($row);
@@ -42,7 +46,8 @@ class ColumnRenderer {
 		return $html;
 	}
 
-	public function text($row) {
+	public function text($row)
+	{
 		$column = $this->column;
 		$dataValue = $row->{$column->name} ?? null;
 
@@ -66,7 +71,8 @@ class ColumnRenderer {
 		return $columnValue;
 	}
 
-	public function class(): string {
+	public function class(): string
+	{
 		$sorting = $this->grid->getSorting();
 		$column = $this->column;
 

@@ -4,9 +4,11 @@ namespace Gsdk\Grid\Renderer\View;
 
 use Gsdk\Grid\Grid;
 
-abstract class AbstractTable {
+abstract class AbstractTable
+{
 
-	public function render(Grid $grid): string {
+	public function render(Grid $grid): string
+	{
 		if ($grid->getData()->isEmpty())
 			return '<div class="grid-empty-text">' . $grid->getOption('emptyText') . '</div>';
 
@@ -18,7 +20,8 @@ abstract class AbstractTable {
 		return $html;
 	}
 
-	public function initFeatures(): array {
+	public function initFeatures(): array
+	{
 		if (!$this->grid->features)
 			return [];
 

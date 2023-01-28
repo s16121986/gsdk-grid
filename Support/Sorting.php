@@ -2,7 +2,8 @@
 
 namespace Gsdk\Grid\Support;
 
-class Sorting {
+class Sorting
+{
 
 	const PARAM_ORDERBY = 'orderby';
 	const PARAM_SORTORDER = 'sortorder';
@@ -15,7 +16,8 @@ class Sorting {
 
 	protected ?string $sortorder = null;
 
-	public function __construct(array $options = []) {
+	public function __construct(array $options = [])
+	{
 		$set = function ($param, array $gridOptions) use ($options) {
 			foreach ($gridOptions as $optionName) {
 				if (!array_key_exists($optionName, $options))
@@ -42,11 +44,13 @@ class Sorting {
 		$set('sortorder', ['sortorder']);
 	}
 
-	public function __get($name) {
+	public function __get($name)
+	{
 		return isset($this->$name) ? $this->$name : null;
 	}
 
-	public function fromRequest(): void {
+	public function fromRequest(): void
+	{
 		$params = $_GET;
 
 		$this->params = $params;
@@ -58,13 +62,15 @@ class Sorting {
 			$this->sortorder = $params[self::PARAM_SORTORDER] === 'desc' ? 'desc' : 'asc';
 	}
 
-	public function orderBy($name, $order = 'asc'): static {
+	public function orderBy($name, $order = 'asc'): static
+	{
 		$this->orderby = $name;
 		$this->sortorder = $order;
 		return $this;
 	}
 
-	public function columnUrl($column): string {
+	public function columnUrl($column): string
+	{
 		$dir = 'asc';
 		if ($this->orderby === $column->name)
 			$dir = $this->sortorder == 'asc' ? 'desc' : 'asc';
@@ -77,18 +83,21 @@ class Sorting {
 		return $this->url . '?' . http_build_query($q);
 	}
 
-	public function setUrl(string $url) {
+	public function setUrl(string $url)
+	{
 		$this->url = $url;
 	}
 
-	public function get() {
+	public function get()
+	{
 		return $this->orderby ? [
 			'orderby' => $this->orderby,
 			'sortorder' => $this->sortorder
 		] : [];
 	}
 
-	public function query($query): void {
+	public function query($query): void
+	{
 		if (!$this->orderby)
 			return;
 

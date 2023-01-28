@@ -5,7 +5,8 @@ namespace Gsdk\Grid\Renderer\View;
 use Gsdk\Grid\Grid;
 use Gsdk\Grid\Renderer\ColumnRenderer;
 
-class Tree extends Table {
+class Tree extends Table
+{
 
 	private string $parentIndex;
 
@@ -13,7 +14,8 @@ class Tree extends Table {
 
 	private string $indentColumn;
 
-	public function __construct($options) {
+	public function __construct($options)
+	{
 		$params = $options['treeConfig'] ?? $options['viewConfig'] ?? $options;
 
 		$this->parentIndex = $params['parentIndex'] ?? 'parent_id';
@@ -21,14 +23,16 @@ class Tree extends Table {
 		$this->indentColumn = $params['indentColumn'] ?? 'name';
 	}
 
-	protected function renderTBody(Grid $grid): string {
+	protected function renderTBody(Grid $grid): string
+	{
 		$html = '<tbody>';
 		$html .= $this->tree($grid, null);
 		$html .= '</tbody>';
 		return $html;
 	}
 
-	private function tree(Grid $grid, $parentId, $level = 0): string {
+	private function tree(Grid $grid, $parentId, $level = 0): string
+	{
 		$html = '';
 
 		foreach ($grid->getData()->get() as $row) {
@@ -53,7 +57,8 @@ class Tree extends Table {
 		return $html;
 	}
 
-	private static function indentPad($indent, $count): string {
+	private static function indentPad($indent, $count): string
+	{
 		return str_repeat($indent, $count);
 	}
 

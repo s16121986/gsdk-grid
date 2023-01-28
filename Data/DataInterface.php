@@ -5,7 +5,8 @@ namespace Gsdk\Grid\Data;
 use Gsdk\Grid\Support\Sorting;
 use Gsdk\Navigation\Paginator;
 
-interface DataInterface {
+interface DataInterface
+{
 	public function paginator(Paginator $paginator): static;
 
 	public function sorting(Sorting $sorting): static;

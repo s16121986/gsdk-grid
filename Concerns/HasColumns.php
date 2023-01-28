@@ -4,11 +4,13 @@ namespace Gsdk\Grid\Concerns;
 
 use Gsdk\Grid\Column\ColumnInterface;
 
-trait HasColumns {
+trait HasColumns
+{
 
 	protected array $columns = [];
 
-	public function __call(string $name, array $arguments) {
+	public function __call(string $name, array $arguments)
+	{
 		if (!isset($arguments[0]))
 			throw new \ArgumentCountError('Column name required');
 
@@ -17,10 +19,9 @@ trait HasColumns {
 
 	public function addColumn(
 		ColumnInterface|string $column,
-		string|array           $type = 'text',
-		array                  $options = []
+		string|array $type = 'text',
+		array $options = []
 	): static {
-
 		if (is_array($type)) {
 			$options = $type;
 			$type = 'text';
@@ -34,11 +35,13 @@ trait HasColumns {
 		return $this;
 	}
 
-	public function getColumns(): array {
+	public function getColumns(): array
+	{
 		return $this->columns;
 	}
 
-	public function getColumn(string $name) {
+	public function getColumn(string $name)
+	{
 		foreach ($this->columns as $column) {
 			if ($column->name === $name)
 				return $column;
@@ -47,7 +50,8 @@ trait HasColumns {
 		return null;
 	}
 
-	public function hasColumn(string $name): bool {
+	public function hasColumn(string $name): bool
+	{
 		foreach ($this->columns as $column) {
 			if ($column->name === $name)
 				return true;

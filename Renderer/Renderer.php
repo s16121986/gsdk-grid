@@ -4,10 +4,12 @@ namespace Gsdk\Grid\Renderer;
 
 use Gsdk\Grid\Grid;
 
-class Renderer {
+class Renderer
+{
 	protected View\AbstractTable $view;
 
-	public function __construct(array $options = []) {
+	public function __construct(array $options = [])
+	{
 		if (isset($options['renderer']))
 			$this->view = $this->viewFactory($options['renderer'], $options);
 		else if (isset($options['view']))
@@ -16,11 +18,13 @@ class Renderer {
 			$this->view = $this->viewFactory('table', $options);
 	}
 
-	public function render(Grid $grid): string {
+	public function render(Grid $grid): string
+	{
 		return $this->view->render($grid);
 	}
 
-	private function viewFactory($type, $options) {
+	private function viewFactory($type, $options)
+	{
 		$class = __NAMESPACE__ . '\View\\';
 		$class .= match (strtolower($type)) {
 			'tree' => 'Tree',

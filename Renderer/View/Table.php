@@ -5,9 +5,11 @@ namespace Gsdk\Grid\Renderer\View;
 use Gsdk\Grid\Grid;
 use Gsdk\Grid\Renderer\ColumnRenderer;
 
-class Table extends AbstractTable {
+class Table extends AbstractTable
+{
 
-	protected function renderTable(Grid $grid): string {
+	protected function renderTable(Grid $grid): string
+	{
 		$html = '<table class="' . $grid->getOption('class') . '">';
 
 		if (false !== $grid->getOption('header'))
@@ -22,7 +24,8 @@ class Table extends AbstractTable {
 		return $html;
 	}
 
-	protected function renderTHead(Grid $grid): string {
+	protected function renderTHead(Grid $grid): string
+	{
 		$html = '<thead>';
 		$html .= '<tr>';
 
@@ -36,7 +39,8 @@ class Table extends AbstractTable {
 		return $html;
 	}
 
-	protected function renderTBody(Grid $grid): string {
+	protected function renderTBody(Grid $grid): string
+	{
 		$html = '<tbody>';
 		foreach ($grid->getData()->get() as $row) {
 			$html .= '<tr>';
@@ -50,7 +54,8 @@ class Table extends AbstractTable {
 		return $html;
 	}
 
-	protected function renderTFoot(Grid $grid): string {
+	protected function renderTFoot(Grid $grid): string
+	{
 		$html = '';
 
 		return ($html ? '<tfoot>' . $html . '</tfoot>' : '');
