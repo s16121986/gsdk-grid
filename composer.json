@@ -28,5 +28,5 @@
 	  "Gsdk\\Grid\\": ""
 	}
   },
-  "minimum-stability": "dev"
+  "minimum-stability": "stable"
 }

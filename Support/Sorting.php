@@ -2,9 +2,10 @@
 
 namespace Gsdk\Grid\Support;
 
+use Illuminate\Support\Facades\Request;
+
 class Sorting
 {
-
 	const PARAM_ORDERBY = 'orderby';
 	const PARAM_SORTORDER = 'sortorder';
 
@@ -29,13 +30,8 @@ class Sorting
 			return false;
 		};
 
-		if (!$set('url', ['orderUrl', 'sortingUrl'])) {
-			$url = $_SERVER['REQUEST_URI'];
-			if (false !== ($pos = strpos($url, '?')))
-				$url = substr($url, 0, $pos);
-
-			$this->url = $url;
-		}
+		if (!$set('url', ['orderUrl', 'sortingUrl']))
+			$this->url = '/' . Request::path();
 
 		$set('params', ['orderParams', 'sortingParams']);
 
@@ -46,12 +42,12 @@ class Sorting
 
 	public function __get($name)
 	{
-		return isset($this->$name) ? $this->$name : null;
+		return $this->$name ?? null;
 	}
 
 	public function fromRequest(): void
 	{
-		$params = $_GET;
+		$params = Request::query();
 
 		$this->params = $params;
 
@@ -103,5 +99,4 @@ class Sorting
 
 		$query->orderBy($this->orderby, $this->sortorder ?? 'asc');
 	}
-
 }
